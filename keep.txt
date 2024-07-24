@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="score">SCORE: <span>00</span></h1>
+    <div class="category-container">
+        <h2>Select a Category:</h2>
+        <div class="category" onclick="startGame('history')">History</div>
+        <div class="category" onclick="startGame('geography')">Geography</div>
+        <div class="category" onclick="startGame('math')">Math</div>
+        <div class="category" onclick="startGame('science')">Science</div>
+    </div>
+    <div class="question-container">
+        <div class="question"></div>
+        <div class="board">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+        </div>
+    </div>
+    <div class="cursor"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>
+        
+
+
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: rgb(58, 129, 0); /* Background color */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.score {
+    font-size: 4em;
+    margin-bottom: .5em;
+}
+
+.category-container {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.category-container h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.category {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.category:hover {
+    transform: scale(1.1);
+}
+
+.category:nth-child(1) {
+    background-color: #ff6f61; /* Red for History */
+    color: #fff;
+}
+
+.category:nth-child(2) {
+    background-color: #4a90e2; /* Blue for Geography */
+    color: #fff;
+}
+
+.category:nth-child(3) {
+    background-color: #7ed321; /* Green for Math */
+    color: #fff;
+}
+
+.category:nth-child(4) {
+    background-color: #f5a623; /* Orange for Science */
+    color: #fff;
+}
+
+.question-container {
+    display: none;
+    text-align: center;
+}
+
+.question-container .question {
+    font-size: 2em; /* Increased font size for question */
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.board {
+    height: 650px; /* Increased size of the board */
+    width: 650px; /* Increased size of the board */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 80px;
+    background-image: url('soil.png'); /* Background for the board */
+    background-size: cover;
+}
+
+.hole {
+    background-color: rgb(165, 85, 11);
+    border-radius: 50%;
+    box-shadow: inset 0 10px 0 7px rgb(53, 21, 6),
+                inset 0 20px 20px 15px rgba(0, 0, 0, .3),
+                0 0 5px rgba(0, 0, 0, .5);
+    position: relative;
+    overflow: hidden;
+}
+
+.hole .option {
+    font-size: 1.2em; /* Increased font size for options */
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for options */
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-align: center;
+    line-height: 180px; /* Center text vertically */
+}
+
+.hole .option:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
+}
+
+.cursor {
+    height: 110px;
+    width: 100px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    background-image: url('hammer.png');
+    background-size: 100% 100%;
+    transform: translate(-20%, -20%);
+    transition: transform .1s;
+    pointer-events: none;
+}
+
+.cursor.active {
+    transform: translate(-20%, -20%) rotate(-45deg);
+}
+
+
+const cursor = document.querySelector('.cursor');
+const holes = [...document.querySelectorAll('.hole')];
+const scoreEl = document.querySelector('.score span');
+const questionEl = document.querySelector('.question-container .question');
+const categoryEl = document.querySelector('.category');
+let score = 0;
+let gameOver = false;
+let questions = [];
+let currentQuestion = {};
+const sound = new Audio("smash.mp3");
+let optionsInterval;
+
+function startGame(category) {
+    categoryEl.style.display = 'none';
+    document.querySelector('.question-container').style.display = 'block';
+    score = 0;
+    gameOver = false;
+    scoreEl.textContent = score;
+
+    fetchQuestions(category).then(data => {
+        questions = data;
+        showQuestion();
+        run();
+    });
+}
+
+function fetchQuestions(category) {
+    // Sample questions
+    const sampleQuestions = {
+        history: [
+            { question: "Who was the first President of the USA?", options: ["George Washington", "Abraham Lincoln", "Thomas Jefferson", "John Adams"], answer: 0 },
+            // Add more history questions
+        ],
+        geography: [
+            { question: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Rome"], answer: 2 },
+            // Add more geography questions
+        ],
+        math: [
+            { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: 1 },
+            // Add more math questions
+        ],
+        science: [
+            { question: "What planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: 1 },
+            // Add more science questions
+        ]
+    };
+
+    return new Promise((resolve) => {
+        resolve(sampleQuestions[category]);
+    });
+}
+
+function showQuestion() {
+    if (questions.length === 0) return;
+    
+    const question = questions.shift();
+    currentQuestion = question;
+
+    questionEl.textContent = question.question;
+    startOptionsInterval();
+}
+
+function startOptionsInterval() {
+    if (optionsInterval) clearInterval(optionsInterval);
+
+    optionsInterval = setInterval(() => {
+        displayOptions();
+    }, 1000); // Adjust interval as needed
+}
+
+function displayOptions() {
+    holes.forEach(hole => {
+        const existingOption = hole.querySelector('.option');
+        if (existingOption) existingOption.remove();
+    });
+
+    const indices = [];
+    while (indices.length < 4) {
+        const randIndex = Math.floor(Math.random() * holes.length);
+        if (!indices.includes(randIndex)) indices.push(randIndex);
+    }
+
+    indices.forEach((index, i) => {
+        const hole = holes[index];
+        const optionEl = document.createElement('div');
+        optionEl.textContent = currentQuestion.options[i] || "";
+        optionEl.classList.add('option');
+        optionEl.style.textAlign = 'center';
+        optionEl.style.lineHeight = '180px'; // Center text vertically
+
+        optionEl.addEventListener('click', () => {
+            if (i === currentQuestion.answer) {
+                score += 10;
+                scoreEl.textContent = score;
+                optionEl.textContent = "Correct!";
+                optionEl.style.backgroundColor = 'green'; // Visual feedback
+                clearInterval(optionsInterval);
+                displayWhackedMole(hole); // Pass the hole where the answer was selected
+                setTimeout(() => {
+                    holes.forEach(h => h.querySelector('.option')?.remove());
+                    showQuestion();
+                }, 1000);
+            } else {
+                optionEl.textContent = "Wrong!";
+                optionEl.style.backgroundColor = 'red'; // Visual feedback
+                gameOver = true;
+                document.querySelector('.score').textContent = "GAME OVER: " + score;
+            }
+        });
+        hole.appendChild(optionEl);
+    });
+}
+
+function displayWhackedMole(hole) {
+    const img = document.createElement('img');
+    img.classList.add('mole');
+    img.src = 'mole-whacked.png';
+    hole.appendChild(img);
+
+    setTimeout(() => {
+        hole.removeChild(img);
+    }, 1000); // Duration to display the whacked mole
+}
+
+function run() {
+    if (gameOver) return;
+
+    // No need to run a mole since it's not needed
+
+    // Removed mole appearance logic
+}
+
+window.addEventListener('mousemove', e => {
+    cursor.style.top = e.pageY + 'px';
+    cursor.style.left = e.pageX + 'px';
+});
+window.addEventListener('mousedown', () => {
+    cursor.classList.add('active');
+});
+window.addEventListener('mouseup', () => {
+    cursor.classList.remove('active');
+});

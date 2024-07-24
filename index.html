@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Whac-a-Mole Game</title>
+</head>
+<body>
+    
+    <h1 class="score">SCORE: <span>00</span></h1>
+    <div class="lives">LIVES: <span>3</span></div>
+    <div class="category-container">
+        <h2>Select a Category:</h2>
+        <div class="category" onclick="startGame('history')">History</div>
+        <div class="category" onclick="startGame('geography')">Geography</div>
+        <div class="category" onclick="startGame('math')">Math</div>
+        <div class="category science" onclick="startGame('science')">Science</div>
+    </div>
+    <div class="question-container">
+        <div class="question"></div>
+        <div class="board">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+        </div>
+    </div>
+    <div class="cursor"></div>
+
+    <div class="game-over">
+        <h2>Game Over</h2>
+        <p>Final Score: <span class="final-score">0</span></p>
+        <button onclick="restartGame()">Try Again</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
