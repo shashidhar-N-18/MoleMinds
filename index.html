@@ -4,42 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Whac-a-Mole Game</title>
+    <link rel="stylesheet" href="menu-style.css">
+    <title>MoleMinds Menu</title>
 </head>
 <body>
-    
-    <h1 class="score">SCORE: <span>00</span></h1>
-    <div class="lives">LIVES: <span>3</span></div>
-    <div class="category-container">
-        <h2>Select a Category:</h2>
-        <div class="category" onclick="startGame('history')">History</div>
-        <div class="category" onclick="startGame('geography')">Geography</div>
-        <div class="category" onclick="startGame('math')">Math</div>
-        <div class="category science" onclick="startGame('science')">Science</div>
-    </div>
-    <div class="question-container">
-        <div class="question"></div>
-        <div class="board">
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
+    <div class="menu-container">
+        <h1>MoleMinds</h1>
+        <div class="button-container">
+            <div class="button" onclick="location.href='game.html'">Start Game</div>
+            <div class="button" onclick="location.href='settings.html'">Settings</div>
+            <div class="button" onclick="exitGame()">Exit</div>
         </div>
     </div>
-    <div class="cursor"></div>
-
-    <div class="game-over">
-        <h2>Game Over</h2>
-        <p>Final Score: <span class="final-score">0</span></p>
-        <button onclick="restartGame()">Try Again</button>
-    </div>
-
-    <script src="main.js"></script>
+    
+    <script>
+        function exitGame() {
+            if (confirm("Are you sure you want to exit?")) {
+                window.close(); // This will close the current tab or window.
+            }
+        }
+    </script>
 </body>
 </html>

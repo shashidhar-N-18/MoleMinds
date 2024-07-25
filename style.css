@@ -1,4 +1,3 @@
-/* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -8,16 +7,20 @@
 html, body {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+ 
 }
 
 body {
-    background-color: rgb(0, 129, 75); /* Background color */
+    /* https://media.istockphoto.com/id/809856984/vector/cute-green-meadow-grass-seamless-pattern-green-herbal-bushes-texture.jpg?s=612x612&w=0&k=20&c=c3tuxtZKG9_7YBVwYWVKjHF8v1omB9Gkl2EXE7MnOW0= */
+    background-image: url("/ASSETS/bg.jpg");
+    background-size: cover;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    text-align: center;
 }
 
 .score {
@@ -28,69 +31,94 @@ body {
 .lives {
     font-size: 2em;
     margin-bottom: 1em;
+    font-weight: bold;
 }
 
 .category-container {
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
 }
 
-.category-container h2 {
-    font-size: 2em;
-    margin-bottom: 1em;
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+   
 }
 
-.category {
-    display: inline-block;
-    font-size: 1.5em;
-    margin: 0.5em;
-    padding: 0.5em 1em;
-    border-radius: 5px;
+.button {
+    min-width: 150px;
+    border-radius: 16px;
+    border: 2px solid #e5e5e5;
+    border-bottom: 6px solid #e5e5e5;
+    transition: all 0.1s;
+    display: inline-flex;
+    padding: 12px 16px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    text-align: center;
+    font-size: 25px;
+    margin: 15px;
+    justify-content: center;
+    margin-top: 40px;
+    
 }
 
-.category:hover {
-    transform: scale(1.1);
+
+.button:active {
+    border-bottom: 2px solid #1cf65a;
 }
 
-.category:nth-child(1) {
+/* Individual Category Button Styles */
+.button:nth-of-type(1) {
     background-color: #eb2a19; /* Red for History */
     color: #fff;
+    transition: 0.3s;
 }
 
-.category:nth-child(2) {
+.button:nth-of-type(2) {
     background-color: #e24aa3; /* Blue for Geography */
     color: #fff;
+    transition: 0.3s;
 }
 
-.category:nth-child(3) {
+.button:nth-of-type(3) {
     background-color: #21d35c; /* Green for Math */
     color: #fff;
+    transition: 0.3s;
 }
 
-.category:nth-child(4) {
-    background-color: #d38c21; /* Green for Math */
+.button:nth-of-type(4) {
+    background-color: #d38c21; /* Orange for Science */
     color: #fff;
-}
-.category.science {
-    background-color: #afc331; /* Pink for Science */
-    color: #fff;
+    transition: 0.3s;
 }
 
-.category.science:hover {
-    background-color: #f06c9b; /* Darker pink on hover for Science */
-}
-.category.category:nth-child(2):hover {
-    background-color: #6cf09f; /* Darker pink on hover for Science */
-}
+.button:nth-of-type(1):hover {
+    background-color: #ddf4ff;
+    color: black;
+    font-weight: bold;
 
-.category.category:nth-child(3):hover {
-    background-color: #f06c9b; /* Darker pink on hover for Science */
+    border-color: #eb2a19;
 }
-
-.category.category:nth-child(4):hover {
-    background-color: #f06c9b; /* Darker pink on hover for Science */
+.button:nth-of-type(2):hover {
+    background-color: #ddf4ff;
+    color: black;
+    font-weight: bold;
+    border-color: #e24aa3;
+}
+.button:nth-of-type(3):hover {
+    background-color: #ddf4ff;
+    color: black;
+    font-weight: bold;
+    border-color: #21d35c;
+}
+.button:nth-of-type(4):hover {
+    background-color: #ddf4ff;
+    color: black;
+    font-weight: bold;
+    border-color: #d38c21;
 }
 
 .question-container {
@@ -99,20 +127,21 @@ body {
 }
 
 .question-container .question {
-    font-size: 2em; /* Increased font size for question */
+    font-size: 2em;
     margin-bottom: 1em;
     font-weight: bold;
 }
 
 .board {
-    height: 650px; /* Increased size of the board */
-    width: 650px; /* Increased size of the board */
+    height: 650px;
+    width: 650px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 80px;
-    background-image: url('soil.png'); /* Background for the board */
+    background-image: url('soil.png');
     background-size: cover;
+    margin: 0 auto;
 }
 
 .hole {
@@ -126,15 +155,15 @@ body {
 }
 
 .hole .option {
-    font-size: 1.2em; /* Increased font size for options */
+    font-size: 1.2em;
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for options */
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
     text-align: center;
-    line-height: 180px; /* Center text vertically */
+    line-height: 180px;
 }
 
 .hole .option:hover {
@@ -159,7 +188,6 @@ body {
     transform: translate(-20%, -20%) rotate(-45deg);
 }
 
-/* Game Over Styles */
 .game-over {
     display: none;
     text-align: center;
@@ -177,11 +205,11 @@ body {
 }
 
 .game-over button {
-    background-color: #f5a623; /* Match with Science category background */
+    background-color: #f5a623;
     color: #fff;
     border: none;
     padding: 1em;
-    font-size: 1.5em;   
+    font-size: 1.5em;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
@@ -190,3 +218,11 @@ body {
 .game-over button:hover {
     background-color: #d68e1f;
 }
+
+
+
+/* --------------------------------------------------------------------------------- */
+
+
+
+/* --------------------------------------------------------------------------------- */

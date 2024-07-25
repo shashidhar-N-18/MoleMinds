@@ -1,0 +1,208 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Container style with fade-in animation */
+.settings-container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+    text-align: center;
+    width: 350px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+/* Heading style */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* Setting section style */
+.setting {
+    margin-bottom: 25px;
+}
+
+/* Label style */
+label {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 500;
+}
+
+/* Difficulty selector style */
+select {
+    padding: 12px;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 8px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+select:focus {
+    border-color: #4CAF50;
+    background-color: #fff;
+    outline: none;
+}
+
+/* Music checkbox style */
+input[type="checkbox"] {
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    top: 1px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(20px);
+}
+
+/* Button styles */
+/* button {
+    min-width: 150px;
+    border-radius: 16px;
+    border: 2px solid #e5e5e5;
+    border-bottom: 6px solid #e5e5e5;
+    transition: all 0.3s;
+    display: inline-flex;
+    padding: 12px 16px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    margin: 15px;
+    justify-content: center;
+    margin-top: 40px;
+    background-color: #4CAF50; /* Default color */
+    /*color: #fff;
+} */
+
+
+/* button:active {
+    border-bottom: 2px solid #1cf65a;
+}
+
+button:nth-of-type(1) {
+    background-color: #f44336;
+}
+
+button:nth-of-type(2):hover {
+    background-color: #d32f2f;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+
+} */
+
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* CSS for button 56*/
+.button-50 {
+    appearance: button;
+    background-color: #f10a0a;
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0 5px 10px 0;
+    overflow: visible;
+    padding: 12px 40px;
+    text-align: center;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: 0.5s;
+  }
+  
+  .button-50:focus {
+    text-decoration: none;
+    
+  }
+  
+  .button-50:hover {
+    text-decoration: none;
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    font-weight: bold;
+    border: #000;
+
+  }
+  
+  .button-50:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+  }
+  
+  .button-50:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+  }
+  
+  @media (min-width: 768px) {
+    .button-50 {
+      padding: 12px 50px;
+    }
+  }
+  

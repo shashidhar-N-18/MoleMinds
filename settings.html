@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="settings-style.css">
+    <title>Settings - MoleMinds</title>
+</head>
+<body>
+    <div class="settings-container">
+        <h1>Settings</h1>
+        <div class="setting">
+            <label for="difficulty">Game Mode:</label>
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="hard">Hard</option>
+                <option value="very-hard">Very Hard</option>
+            </select>
+        </div>
+        <div class="setting">
+            <label for="music-toggle">Music:</label>
+            <input type="checkbox" id="music-toggle" checked>
+        </div>
+        <button onclick="saveSettings()" class="button-50">Save</button>
+        <button onclick="goBack()" class="button-50">Back to Menu</button>
+    </div>
+    <script src="settings.js"></script>
+</body>
+</html>

@@ -230,3 +230,23 @@ window.addEventListener('mousedown', () => {
 window.addEventListener('mouseup', () => {
     cursor.classList.remove('active');
 });
+
+
+function startOptionsInterval() {
+    if (optionsInterval) clearInterval(optionsInterval);
+
+    let intervalTime;
+    const difficulty = localStorage.getItem('difficulty') || 'easy';
+
+    if (difficulty === 'hard') {
+        intervalTime = 800; // Faster interval for hard mode
+    } else if (difficulty === 'very-hard') {
+        intervalTime = 500; // Even faster interval for very hard mode
+    } else {
+        intervalTime = 1200; // Default interval for easy mode
+    }
+
+    optionsInterval = setInterval(() => {
+        displayOptions();
+    }, intervalTime); // Adjust interval as needed
+}
