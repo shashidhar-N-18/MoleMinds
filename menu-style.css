@@ -43,8 +43,19 @@ body {
 h1 {
     font-size: 4em;
     margin-bottom: 20px;
-    color: #f5a623;
+    color: #23baf5; /* Text color */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Roboto Condensed', sans-serif; /* Ensure you use a smooth, readable font */
+    animation: colorChange 5s linear infinite; /* Smooth color transition */
+}
+
+/* Keyframes for color animation */
+@keyframes colorChange {
+    0% { color: #23baf5; } /* Blue */
+    25% { color: #f5a623; } /* Orange */
+    50% { color: #23f577; } /* Teal */
+    75% { color: #ff6b6b; } /* Red */
+    100% { color: #23baf5; } /* Back to Blue */
 }
 
 .button-container {
@@ -71,7 +82,7 @@ h1 {
 }
 
 .button:hover {
-    background-color: #63e90f;
+    background-color: #63e90f; /* Green for hover */
     border-color: #7d7dec;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     transform: scale(1.05);
@@ -108,7 +119,7 @@ h1 {
 .control-buttons button {
     border-radius: 20px; /* More rounded corners */
     border: 2px solid #e5e5e5;
-    background-color: #1e90ff; /* A brighter blue for better visibility */
+    background-color: #1e90ff; /* Brighter blue for better visibility */
     color: #fff;
     font-size: 1.2em; /* Slightly larger text */
     padding: 12px 24px; /* Increased padding for a larger button */
