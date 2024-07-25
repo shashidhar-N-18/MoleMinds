@@ -250,3 +250,61 @@ function startOptionsInterval() {
         displayOptions();
     }, intervalTime); // Adjust interval as needed
 }
+function displayOptions() {
+    holes.forEach(hole => {
+        const existingOption = hole.querySelector('.option');
+        if (existingOption) existingOption.remove();
+    });
+
+    const indices = [];
+    while (indices.length < 4) {
+        const randIndex = Math.floor(Math.random() * holes.length);
+        if (!indices.includes(randIndex)) indices.push(randIndex);
+    }
+
+    indices.forEach((index, i) => {
+        const hole = holes[index];
+        const optionEl = document.createElement('div');
+        optionEl.textContent = currentQuestion.options[i] || "";
+        optionEl.classList.add('option');
+        optionEl.style.textAlign = 'center';
+        optionEl.style.lineHeight = '180px'; // Center text vertically
+
+        optionEl.addEventListener('click', () => {
+            if (i === currentQuestion.answer) {
+                score += 10;
+                scoreEl.textContent = score;
+                optionEl.textContent = "Correct!";
+                optionEl.style.backgroundColor = 'green'; // Visual feedback
+                clearInterval(optionsInterval);
+                displayWhackedMole(hole); // Pass the hole where the answer was selected
+                setTimeout(() => {
+                    holes.forEach(h => h.querySelector('.option')?.remove());
+                    showQuestion();
+                }, 1500);
+            } else {
+                document.body.classList.add('wrong-screen'); // Add shaking and red background effect
+
+                setTimeout(() => {
+                    document.body.classList.remove('wrong-screen'); // Remove effect after 0.5 seconds
+                }, 500);
+
+                optionEl.textContent = "Wrong!";
+                optionEl.style.backgroundColor = 'red'; // Visual feedback
+
+                lives -= 1; // Deduct a life for wrong answer
+                livesEl.textContent = lives;
+
+                if (lives <= 0) {
+                    endGame();
+                } else {
+                    setTimeout(() => {
+                        holes.forEach(h => h.querySelector('.option')?.remove());
+                        showQuestion();
+                    }, 2000);
+                }
+            }
+        });
+        hole.appendChild(optionEl);
+    });
+}

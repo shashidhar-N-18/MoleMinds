@@ -1,5 +1,3 @@
-<!-- HTML !-->
-<button class="button-50" role="button">Button 50</button>
 
 /* CSS */
 .button-50 {
@@ -43,7 +41,7 @@
   }
   
   .button-50:not([disabled]):active {
-    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    box-shadow: #918585 2px 2px 0 0, #000 2px 2px 0 1px;
     transform: translate(2px, 2px);
   }
   

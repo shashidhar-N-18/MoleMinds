@@ -12,9 +12,10 @@ body {
 
 /* Container style with fade-in animation */
 .settings-container {
+    /* margin: 40px; */
     background-color: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow:  20px 20px rgba(0, 0, 0, 0.1);
     padding: 30px 40px;
     text-align: center;
     width: 350px;
@@ -150,7 +151,7 @@ button:hover {
 /* CSS for button 56*/
 .button-50 {
     appearance: button;
-    background-color: #f10a0a;
+    background-color: #f12d0a;
     background-image: none;
     border: 1px solid #000;
     border-radius: 4px;
@@ -183,7 +184,7 @@ button:hover {
   
   .button-50:hover {
     text-decoration: none;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(72, 184, 27);
     color: #ffffff;
     font-weight: bold;
     border: #000;
