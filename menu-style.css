@@ -7,17 +7,26 @@
 html, body {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden; /* Prevents scrollbars caused by the video background */
 }
 
 body {
-    background-image: url("https://media.istockphoto.com/id/809856984/vector/cute-green-meadow-grass-seamless-pattern-green-herbal-bushes-texture.jpg?s=612x612&w=0&k=20&c=c3tuxtZKG9_7YBVwYWVKjHF8v1omB9Gkl2EXE7MnOW0=");
-    background-size: cover;
+    position: relative; /* Position relative to ensure proper layering */
     color: #fff;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
     text-align: center;
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire background */
+    z-index: -1; /* Places the video behind all other content */
 }
 
 .menu-container {
@@ -25,18 +34,24 @@ body {
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    max-width: 600px; /* Limits the width to avoid stretching */
+    width: 100%;
+    position: relative; /* Ensures the container stays on top of the video */
+    z-index: 1;
 }
 
 h1 {
     font-size: 4em;
     margin-bottom: 20px;
     color: #f5a623;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .button-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center; /* Center align buttons horizontally */
 }
 
 .button {
@@ -49,30 +64,32 @@ h1 {
     font-size: 1.5em;
     padding: 15px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     text-align: center;
     font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
     background-color: #63e90f;
     border-color: #7d7dec;
-    
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
 }
 
 .button:active {
     border-bottom: 2px solid #1d6fa8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
 }
 
 .button:nth-of-type(2) {
     background-color: #e24aa3;
-    
 }
 
 .button:nth-of-type(2):hover {
     background-color: #63e90f;
     border-color: #7d7dec;
-
 }
 
 .button:nth-of-type(3) {
@@ -82,5 +99,35 @@ h1 {
 .button:nth-of-type(3):hover {
     background-color: #63e90f;
     border-color: #7d7dec;
+}
 
+.control-buttons {
+    margin-top: 20px;
+}
+
+.control-buttons button {
+    border-radius: 20px; /* More rounded corners */
+    border: 2px solid #e5e5e5;
+    background-color: #1e90ff; /* A brighter blue for better visibility */
+    color: #fff;
+    font-size: 1.2em; /* Slightly larger text */
+    padding: 12px 24px; /* Increased padding for a larger button */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.control-buttons button:hover {
+    background-color: #63e90f; /* Green for hover state */
+    border-color: #7d7dec;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+}
+
+.control-buttons button:active {
+    border-bottom: 2px solid #1d6fa8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
 }

@@ -8,6 +8,11 @@
     <title>MoleMinds Menu</title>
 </head>
 <body>
+    <video id="bg-video" autoplay muted loop>
+        <source src="ASSETS/vid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
     <div class="menu-container">
         <h1>MoleMinds</h1>
         <div class="button-container">
@@ -15,11 +20,28 @@
             <div class="button" onclick="location.href='settings.html'">Settings</div>
             <div class="button" onclick="exitGame()">Exit</div>
         </div>
+        <div class="control-buttons">
+            <button id="fullscreen-btn" onclick="toggleFullscreen()">Go Fullscreen</button>
+        </div>
     </div>
+    
     <script>
         function exitGame() {
             if (confirm("Are you sure you want to exit?")) {
                 window.close(); // This will close the current tab or window.
+            }
+        }
+
+        function toggleFullscreen() {
+            const btn = document.getElementById('fullscreen-btn');
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                btn.textContent = 'Exit Fullscreen'; // Update button text
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    btn.textContent = 'Go Fullscreen'; // Update button text
+                }
             }
         }
     </script>
