@@ -55,8 +55,9 @@ h1 {
 }
 
 .button:hover {
-    background-color: #1d6fa8;
-    border-color: #1d6fa8;
+    background-color: #63e90f;
+    border-color: #7d7dec;
+    
 }
 
 .button:active {
@@ -65,10 +66,13 @@ h1 {
 
 .button:nth-of-type(2) {
     background-color: #e24aa3;
+    
 }
 
 .button:nth-of-type(2):hover {
-    background-color: #d02a84;
+    background-color: #63e90f;
+    border-color: #7d7dec;
+
 }
 
 .button:nth-of-type(3) {
@@ -76,5 +80,7 @@ h1 {
 }
 
 .button:nth-of-type(3):hover {
-    background-color: #d72a19;
+    background-color: #63e90f;
+    border-color: #7d7dec;
+
 }
