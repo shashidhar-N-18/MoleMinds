@@ -19,3 +19,15 @@ function saveSettings() {
 function goBack() {
     window.location.href = 'index.html';
 }
+
+// click sound effect
+
+const audio_button_set = new Audio("ASSETS/click-sound.mp3"); 
+
+const buttons_all_set = Array.from(document.getElementsByClassName("button-50"));
+
+buttons_all_set.forEach(button => {
+  button.addEventListener("click", () => {
+    audio_button_set.play();
+  });
+});

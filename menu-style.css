@@ -73,6 +73,7 @@ h1 {
 }
 
 .button-container {
+    font-family: "Bungee", sans-serif;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -100,6 +101,7 @@ h1 {
     border-color: #7d7dec;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     transform: scale(1.05);
+    color: rgb(255, 255, 255);
 }
 
 .button:active {

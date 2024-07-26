@@ -5,13 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <!-- font-bungee -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>QuizWhack</title>
 </head>
 <body>
     <h1 class="score">SCORE: <span>00</span></h1>
     <div class="lives">LIVES: <span>3</span></div>
     <div class="category-container">
-        <h2>Select a Category:</h2>
+        <h2 class="category-text">Select a Category:</h2>
         <div class="category button" onclick="startGame('history')">History</div>
         <div class="category button" onclick="startGame('geography')">Geography</div>
         <div class="category button" onclick="startGame('math')">Math</div>
@@ -34,10 +38,10 @@
     </div>
     <div class="cursor"></div>
 
-    <div class="game-over">
+    <div class="game-over popout">
         <h2>Game Over</h2>
         <p>Final Score: <span class="final-score">0</span></p>
-        <button onclick="restartGame()">Try Again</button>
+        <button onclick="restartGame()" class="button">Try Again</button>
     </div>
 
     

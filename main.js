@@ -14,6 +14,8 @@ let currentQuestion = {};
 const sound = new Audio("smash.mp3");
 let optionsInterval;
 
+
+
 function startGame(category) {
     categoryEl.style.display = 'none';
     document.querySelector('.question-container').style.display = 'block';
@@ -195,11 +197,13 @@ function displayWhackedMole(hole) {
     }, 1000); // Duration to display the whacked mole
 }
 
+const gameOverSound = new Audio("ASSETS/game-over-sound.mp3"); // Load the game over sound
 function endGame() {
     gameOver = true;
     document.querySelector('.question-container').style.display = 'none';
     gameOverEl.style.display = 'block';
     finalScoreEl.textContent = score;
+    gameOverSound.play();
 }
 
 function endCategory() {
@@ -308,3 +312,39 @@ function displayOptions() {
         hole.appendChild(optionEl);
     });
 }
+
+
+function updateLives(lives) {
+    const livesContainer = document.getElementById('lives');
+    livesContainer.innerHTML = ''; // Clear previous hearts
+    for (let i = 0; i < lives; i++) {
+        const heartImg = document.createElement('img');
+        heartImg.src = 'heart.png'; // Path to your heart image
+        heartImg.alt = 'Heart';
+        heartImg.classList.add('heart-icon');
+        livesContainer.appendChild(heartImg);
+    }
+}
+
+// hammer sound effects
+const buttons = Array.from(document.getElementsByClassName("hole"));
+
+const audio_ham = new Audio("ASSETS/hammer-sound.mp3");
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        audio_ham.play();
+    });
+});
+
+
+// button sound effect
+const audio_button = new Audio("ASSETS/click-sound.mp3"); 
+
+const buttons_all = Array.from(document.getElementsByClassName("button"));
+
+buttons_all.forEach(button => {
+  button.addEventListener("click", () => {
+    audio_button.play();
+  });
+});
