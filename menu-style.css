@@ -6,8 +6,10 @@
 
 html, body {
     height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Jost', sans-serif;
     overflow: hidden; /* Prevents scrollbars caused by the video background */
+    font-weight: bold;
+
 }
 
 body {
@@ -41,12 +43,24 @@ body {
 }
 
 h1 {
-    font-size: 4em;
+    /* font-size: 4em;
     margin-bottom: 20px;
-    color: #23baf5; /* Text color */
+    color: #23baf5; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-family: 'Roboto Condensed', sans-serif; /* Ensure you use a smooth, readable font */
-    animation: colorChange 5s linear infinite; /* Smooth color transition */
+    font-family: 'Roboto Condensed', sans-serif; 
+    animation: colorChange 5s linear infinite; Smooth color transition */
+
+   
+    font-family: 'Honk';
+    margin-bottom: 20px;
+    font-size: 100px;
+    /* font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50; */
+    
 }
 
 /* Keyframes for color animation */
